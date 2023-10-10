@@ -1,6 +1,7 @@
 <div class="container" fxLayout>
     <div fxFlex="30" fxLayoutAlign="center center">
-        <form class="example-form">
+
+        <form class="example-form" [formGroup]="myForm">
             <img src="https://media.istockphoto.com/id/1284812314/es/vector/ilustraci%C3%B3n-vectorial-de-servicios-de-seguridad-de-datos-concepto-de-protecci%C3%B3n-de-datos.jpg?s=612x612&w=0&k=20&c=5n_OS3Wcl-lArU5zhvlUhECdiUT4p7XuI4BT-rDIy44=" class="logo">.
             <br>
             <br>
@@ -10,21 +11,22 @@
             <br>
             <br>
             <mat-form-field class="example-full-width">
-                <mat-label>Favorite food</mat-label>
-                <input matInput placeholder="Ex. Pizza" value="Sushi">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Ex. Pizza" value="" formControlName="usuario">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-                <mat-label>Favorite food</mat-label>
-                <input matInput placeholder="Ex. Pizza" type="password">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="password" type="password" formControlName="password">
                 <mat-icon matSuffix (click)="p()">visibility</mat-icon>
             </mat-form-field>
             <div class="label">Forgot password?</div>
             <br>
             <br>
-            <button mat-raised-button disabled>Disabled</button>
+            <button mat-raised-button (click)="loginUser()"[disabled]="myForm.invalid">Login</button>
         </form>
     </div>
+    <!--
     <div fxFlex="70" fxLayoutAlign="center" style="background-color: darkgrey;">
         <p id="errorTxt"></p>
         <div>
@@ -36,4 +38,5 @@
         <button (click)= "p()">guardar</button>
         
     </div>
+-->
 </div>

@@ -10,7 +10,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateService, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -52,7 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
+        
     }
     }),
     MatSidenavModule,
@@ -63,7 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTabsModule,
     MatButtonModule,
     MatTreeModule,
-    MatMenuModule
+    MatMenuModule,
+    ReactiveFormsModule
   ],
   exports:[
     TranslateModule

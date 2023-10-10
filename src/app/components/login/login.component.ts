@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../../Services/login.service'
+import { formattedError } from '@angular/compiler';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   public canvasTag;
+  public myForm :FormGroup;
 
-
-  constructor() { }
+  constructor(public loginService:LoginService) {  }
 
   ngOnInit(): void {
+
+    this.myForm = new FormGroup({
+      'usuario': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required)
+    });
     
-    this.prue();
+    //this.prue();
   }
 
   prue() {
@@ -48,6 +57,24 @@ export class LoginComponent implements OnInit {
 
   p() {
     console.log('funciono', this.canvasTag.toDataURL());
+  }
+
+  loginUser(){
+    debugger
+   console.log(this.myForm.valid)
+    if(this.myForm.valid){
+
+      alert("camila que te pasa,no me pasa nada");
+      const username = this.myForm.controls['usuario'].value;
+      const password = this.myForm.controls['password'].value;
+
+      console.log(username,password)
+      this.loginService.Login(username, password);
+    }
+    else{
+
+      alert("camila que te pasa,deje la bobada");
+    }
   }
 
 }
