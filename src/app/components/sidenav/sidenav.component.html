@@ -1,0 +1,36 @@
+<mat-sidenav-container [hasBackdrop]="'false'" class="example-container">
+    <mat-sidenav opened="true" [mode]="'side'" #sidenav disableClose style="width: 200px;">
+        <div style="margin: 10px; text-align: center; margin-top: 23px; overflow: auto;background-color: white;">
+            <img src="https://media.istockphoto.com/id/1224979687/es/vector/concepto-de-robot-ai-futurista.jpg?s=612x612&w=0&k=20&c=6EadvRfym2oZRChhETw7wTeTgGqMqKum2JctM8CF--Q=" height="40" alt="">
+        </div>
+        <form class="example-form" style="width: 190px; text-align: center;">
+            <mat-form-field class="example-full-width" style="width: 90%;">
+                <mat-label>Buscar</mat-label>
+                <input matInput (keyup)="filter($event)">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+        <mat-nav-list>
+            <app-menu-list-item *ngFor="let item of fm" [item]="item" (submit)="newTab(item)"></app-menu-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-tab-group animationDuration="0ms" [selectedIndex]="selected">
+            <mat-tab *ngFor="let item of tabs">
+                <ng-template mat-tab-label>
+                    {{ item.name }}
+                    <button mat-icon-button (click)="removeTab(item)">
+                        <mat-icon class="example-tab-icon">close</mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon class="example-tab-icon">refresh</mat-icon>
+                    </button>
+                </ng-template>
+                <iframe [src]="dom.bypassSecurityTrustResourceUrl(item.url)" frameborder="0">
+                </iframe>
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
