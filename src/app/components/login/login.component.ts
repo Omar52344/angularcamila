@@ -60,20 +60,26 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
-    debugger
+    //debugger
    console.log(this.myForm.valid)
     if(this.myForm.valid){
 
-      alert("camila que te pasa,no me pasa nada");
+      //alert("camila que te pasa,no me pasa nada");
       const username = this.myForm.controls['usuario'].value;
       const password = this.myForm.controls['password'].value;
 
       console.log(username,password)
-      this.loginService.Login(username, password);
+
+      this.loginService.Login(username, password).subscribe(
+        response => console.log(response),
+        error => console.error(error)
+      );
+
+     
     }
     else{
 
-      alert("camila que te pasa,deje la bobada");
+      //alert("camila que te pasa,deje la bobada");
     }
   }
 
